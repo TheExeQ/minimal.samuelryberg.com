@@ -5,9 +5,8 @@ const matter = require("gray-matter");
 
 async function generate() {
   const feed = new RSS({
-    title: "Your Name",
-    site_url: "https://yoursite.com",
-    feed_url: "https://yoursite.com/feed.xml",
+    title: "Samuel Ryberg",
+    site_url: "https://samuelryberg.com",
   });
 
   const posts = await fs.readdir(path.join(__dirname, "..", "pages", "posts"));
@@ -17,7 +16,7 @@ async function generate() {
       if (name.startsWith("index.")) return;
 
       const content = await fs.readFile(
-        path.join(__dirname, "..", "pages", "posts", name),
+        path.join(__dirname, "..", "pages", "posts", name)
       );
       const frontmatter = matter(content);
 
@@ -29,7 +28,7 @@ async function generate() {
         categories: frontmatter.data.tag.split(", "),
         author: frontmatter.data.author,
       });
-    }),
+    })
   );
 
   await fs.writeFile("./public/feed.xml", feed.xml({ indent: true }));
