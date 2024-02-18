@@ -1,6 +1,6 @@
 ---
 type: posts
-title: Blog
+title: Posts
 date: 2024-02-18
 ---
 
